@@ -191,6 +191,13 @@ filesets:
       - rtl/corescore_icesugar.v: { file_type: verilogSource }
       - data/icesugar.pcf: { file_type: PCF }
 
+  zcu102:
+    files:
+      - rtl/corescore_zcu102_clock_gen.v: { file_type: verilogSource }
+      - rtl/corescore_zcu102.v: { file_type: verilogSource }
+      - data/vivado_waive.tcl: { file_type: tclSource }
+      - data/zcu102.xdc: { file_type: xdc }
+
   zcu106:
     files:
       - rtl/corescore_zcu106_clock_gen.v: { file_type: verilogSource }
@@ -543,6 +550,15 @@ targets:
       vivado: { part: xc7vx980tffg1926-2 }
     toplevel: corescore_haps_dx7
 
+  zcu102:
+    default_tool: vivado
+    description: Zynq UltraScale+ MPSoC ZCU102 Evaluation Kit
+    filesets: [rtl, zcu102]
+    generate: [corescorecore_zcu102]
+    tools:
+      vivado: { part: xczu9eg-ffvb1156-2-e }
+    toplevel: corescore_zcu102
+
   zcu106:
     default_tool: vivado
     filesets: [rtl, zcu106]
@@ -744,6 +760,11 @@ generate:
     generator: corescorecore
     parameters:
       count: 3040
+
+  corescorecore_zcu102:
+    generator: corescorecore
+    parameters:
+      count: 1200
 
   corescorecore_zcu106:
     generator: corescorecore
